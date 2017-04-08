@@ -11,5 +11,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: "../views/sign_in.html"
   })
 
-  $urlRouterProvider.otherwise("/home");
+  $urlRouterProvider.otherwise("/sign_in");
 });
