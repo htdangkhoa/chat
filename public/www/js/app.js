@@ -10,6 +10,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/sign_in",
     templateUrl: "../views/sign_in.html"
   })
+  .state('sign_up', {
+    url: "/sign_up",
+    templateUrl: "../views/sign_up.html"
+  })
 
-  $urlRouterProvider.otherwise("/sign_in");
+  $urlRouterProvider.otherwise("/home");
 });
