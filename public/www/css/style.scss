@@ -42,6 +42,7 @@ $gray: #CCCCCC;
     text-align: center;
     font-size: 13px;
     margin-left: -15px;
+    margin-top: 50px;
 }
 
 .sign_form {
@@ -50,6 +51,7 @@ $gray: #CCCCCC;
 	padding: 10px 20px 25px 20px;
 	min-width: 300px;
 	max-width: 350px;
+	margin-bottom: 70px;
 
 	a:hover {
 		color: $gray !important;
@@ -58,5 +60,45 @@ $gray: #CCCCCC;
 
 	* {
 		margin-bottom: 5px;
+	}
+}
+
+.chat-box {
+	border: 1px solid $gray;
+	width: 60%;
+	height: 400px;
+	text-align: left;
+	margin-bottom: 70px;
+	display: flex;
+	min-width: 300px;
+	max-width: 800px;
+
+	.list-user {
+		height: 100%;
+		width: 25%;
+		border: 1px solid $gray;
+	}
+
+	div {
+		width: 75%;
+		height: 100%;
+
+		.list-messages {
+			width: 100%;
+			height: 85%;
+			border: 1px solid $gray;
+		}
+
+		.message-box {
+			width: 100%;
+			height: 15%;
+			border: 1px solid $gray;
+
+			textarea {
+				width: 100%;
+				height: 100%;
+				resize: none;
+			}
+		}
 	}
 }

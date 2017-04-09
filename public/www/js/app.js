@@ -1,5 +1,11 @@
-var app = angular.module("starter", ["ui.router"]);
-app.config(function($stateProvider, $urlRouterProvider) {
+var app = angular.module("starter", ["ui.router", "ismobile"]);
+app.config(function($stateProvider, $urlRouterProvider, isMobileProvider) {
+
+  // Resize logo on mobile.
+  if (isMobileProvider.phone) {
+    $(".logo").css("font-size", "7px");
+  }
+
   $stateProvider
   .state('home', {
     url: "/home",
@@ -18,10 +24,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
   if (signed_in) {
-    //go to home
+    // Go to home page.
     $urlRouterProvider.otherwise("/home");
   }else {
-    //sign in
+    // Go to sign in page.
     $urlRouterProvider.otherwise("/sign_in");
   }
 
