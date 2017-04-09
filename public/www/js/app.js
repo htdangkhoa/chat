@@ -15,5 +15,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: "../views/sign_up.html"
   })
 
-  $urlRouterProvider.otherwise("/home");
+  console.log(JSON.parse(logged_in));
+
+  if (JSON.parse(logged_in)) {
+    //go to home
+    $urlRouterProvider.otherwise("/home");
+  }else {
+    //sign in
+    $urlRouterProvider.otherwise("/sign_in");
+  }
+
+
 });

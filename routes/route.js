@@ -6,9 +6,15 @@ var modules = require("../modules/modules"),
 
 // Route part.
 router.get("/", function(req, res) {
-  res.render("index.html", {
-    "user": req.user
-  });
+  if (req.user) {
+    res.render("index.html", {
+      "logged_in": true
+    });
+  }else {
+    res.render("index.html", {
+      "logged_in": false
+    });
+  }
 })
 
 router.get("/login", function(req, res) {
