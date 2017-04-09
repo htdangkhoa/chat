@@ -1,13 +1,26 @@
-<form action="/login" method="post">
-  <div>
-    <label>Username:</label>
-    <input type="email" name="email"/><br/>
+<title>Sign in</title>
+
+<center>
+  <div class="sign_form">
+    <h2>Sign in</h2>
+    <input type="email" class="form-control" placeholder="Email">
+    <input type="password" class="form-control" placeholder="Password">
+    <button>Sign in</button>
+    <p>Don't have an account? <a ui-sref="sign_up">Sign up</a>.</p>
   </div>
-  <div>
-    <label>Password:</label>
-    <input type="password" name="password"/>
-  </div>
-  <div>
-    <input type="submit" value="Submit"/>
-  </div>
-</form>
+</center>
+
+  <!-- <form action="/login" method="post">
+    <div>
+      <label>Username:</label>
+      <input class="form-control" type="email" name="email" value="abc@gmail.com"/><br/>
+    </div>
+    <div>
+      <label>Password:</label>
+      <input class="form-control" type="password" name="password" value="1"/>
+    </div>
+    <div>
+      <input class="form-control" type="submit" value="Submit"/>
+    </div>
+  </form>
+  <a ui-sref="sign_up">Sign up</a> -->

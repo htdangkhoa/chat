@@ -3,18 +3,21 @@ var modules = require("../modules/modules"),
     router = modules.router,
     passport = require("../modules/passport/passport").passport;
     User = require("../modules/models/user");
+var stringify = require('json-stringify');
 
 // Route part.
 router.get("/", function(req, res) {
+  var id, signed_in = false;
+
   if (req.user) {
-    res.render("index.html", {
-      "logged_in": true
-    });
-  }else {
-    res.render("index.html", {
-      "logged_in": false
-    });
+    id = req.user._id;
+    signed_in = true;
   }
+
+  res.render("index.html", {
+    "signed_in": signed_in,
+    "id": id
+  });
 })
 
 router.get("/login", function(req, res) {

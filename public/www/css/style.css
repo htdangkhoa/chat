@@ -1,0 +1,41 @@
+* {
+  font-family: 'monospace' !important;
+  color: #00FE00 !important;
+  background-color: #222222 !important;
+  text-decoration: none !important;
+  border-radius: 0px !important; }
+  * input, * button {
+    border: 2px solid #CCCCCC !important; }
+  * input:focus, * input:active {
+    border: 2px solid #CCCCCC !important; }
+
+*:focus, *:active {
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  outline: none !important; }
+
+.container {
+  padding: 0px;
+  margin: 0px; }
+
+.logo {
+  border: none;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0px;
+  margin: 0px; }
+
+.sign_form {
+  width: 50%;
+  border: 2px solid #CCCCCC !important;
+  padding: 10px 20px 25px 20px;
+  min-width: 300px;
+  max-width: 350px; }
+  .sign_form a:hover {
+    color: #CCCCCC !important;
+    background-color: #222222 !important; }
+  .sign_form * {
+    margin-bottom: 5px; }
+
+/*# sourceMappingURL=style.css.map */

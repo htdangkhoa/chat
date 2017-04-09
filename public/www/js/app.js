@@ -8,22 +8,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
   .state('sign_in', {
     url: "/sign_in",
-    templateUrl: "../views/sign_in.html"
+    templateUrl: "../views/sign_in.html",
+    controller: "SignCtrl"
   })
   .state('sign_up', {
     url: "/sign_up",
-    templateUrl: "../views/sign_up.html"
+    templateUrl: "../views/sign_up.html",
+    controller: "SignCtrl"
   })
 
-  console.log(JSON.parse(logged_in));
-
-  if (JSON.parse(logged_in)) {
+  if (signed_in) {
     //go to home
     $urlRouterProvider.otherwise("/home");
   }else {
     //sign in
     $urlRouterProvider.otherwise("/sign_in");
   }
-
 
 });

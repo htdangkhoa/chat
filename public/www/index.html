@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../libs/bootstrap/dist/css/bootstrap-theme.min.css">
 
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
     <script type="text/javascript" src="../libs/angular/angular.min.js"></script>
     <script type="text/javascript" src="../libs/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="../libs/restangular/dist/restangular.min.js"></script>
@@ -16,17 +18,26 @@
     <script type="text/javascript" src="../libs/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script>
-      var logged_in = {{ logged_in }};
+      var signed_in = {{ signed_in }};
+      // var user = "{{id}}"
+      // console.log(user);
     </script>
 
     <script type="text/javascript" src="../js/app.js"></script>
     <script type="text/javascript" src="../js/controllers/HomeCtrl.js"></script>
+    <script type="text/javascript" src="../js/controllers/SignCtrl.js"></script>
 
-    <title>Loading...</title>
+    <!-- <title>Loading...</title> -->
   </head>
   <body ng-app="starter">
-    <p>{{ logged_in }}</p>
-
-    <div ui-view></div>
+    <pre class="logo">
+ ______    ______  __       __   ______  __   __   ______   ________
+|   _  \  /  ____\|  |     |  | /   ___\|  | |  | /      \ \__    __/
+|  | |  ||  /____ |   \   /   ||   /    |  | |  ||   /\   |   |  |
+|  | |  ||   ____| \   \ /   / |  |     |  |_|  ||  |__|  |   |  |
+|  |_|  ||  \_____  \   |   /  |   \____|   _   ||   __   |   |  |
+|______/  \______/   \_____/    \______/|__| |__||__|  |__|   |__|
+    </pre>
+    <ui-view class="container"></ui-view>
   </body>
 </html>
