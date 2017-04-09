@@ -6,7 +6,7 @@ $green: #00FE00;
 $gray: #CCCCCC;
 
 * {
-	font-family: 'monospace' !important;
+	font-family: monospace, monospace !important;
 	color: $green !important;
 	background-color: $black !important;
 	text-decoration: none !important;
@@ -39,6 +39,9 @@ $gray: #CCCCCC;
     text-overflow: ellipsis;
     padding: 0px;
 	margin: 0px;
+    text-align: center;
+    font-size: 13px;
+    margin-left: -15px;
 }
 
 .sign_form {

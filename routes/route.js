@@ -3,7 +3,6 @@ var modules = require("../modules/modules"),
     router = modules.router,
     passport = require("../modules/passport/passport").passport;
     User = require("../modules/models/user");
-var stringify = require('json-stringify');
 
 // Route part.
 router.get("/", function(req, res) {

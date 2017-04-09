@@ -1,5 +1,5 @@
 * {
-  font-family: 'monospace' !important;
+  font-family: monospace, monospace !important;
   color: #00FE00 !important;
   background-color: #222222 !important;
   text-decoration: none !important;
@@ -24,7 +24,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0px;
-  margin: 0px; }
+  margin: 0px;
+  text-align: center;
+  font-size: 13px;
+  margin-left: -15px; }
 
 .sign_form {
   width: 50%;
