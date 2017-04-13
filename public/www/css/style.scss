@@ -13,11 +13,15 @@ $gray: #CCCCCC;
 	border-radius: 0px !important;
 
 	input, button {
-		border: 2px solid $gray !important;
+		border: 0.2px solid $gray !important;
 	}
 
 	input:focus, input:active {
-		border: 2px solid $gray !important;
+		border: 0.2px solid $gray !important;
+	}
+
+	li {
+		list-style-type: none;
 	}
 }
 
@@ -25,6 +29,10 @@ $gray: #CCCCCC;
 	box-shadow: none !important;
 	-webkit-appearance: none !important;
 	outline: none !important;
+}
+
+*[disabled] {
+	cursor: not-allowed !important;
 }
 
 .container {
@@ -47,8 +55,8 @@ $gray: #CCCCCC;
 
 .sign_form {
 	width: 50%;
-	border: 2px solid $gray !important;
-	padding: 10px 20px 25px 20px;
+	border: 0.2px solid $gray !important;
+	padding: 0px 20px 25px 20px;
 	min-width: 300px;
 	max-width: 350px;
 	margin-bottom: 70px;
@@ -64,7 +72,7 @@ $gray: #CCCCCC;
 }
 
 .chat-box {
-	border: 1px solid $gray;
+	border: 0.2px solid $gray;
 	width: 60%;
 	height: 400px;
 	text-align: left;
@@ -76,7 +84,19 @@ $gray: #CCCCCC;
 	.list-user {
 		height: 100%;
 		width: 25%;
-		border: 1px solid $gray;
+		border-right: 0.2px solid $gray;
+
+		ul {
+			padding: 10px;
+
+			li {
+				width: 100%;
+			    text-overflow: ellipsis;
+			    overflow: hidden;
+			    white-space: nowrap;
+			    padding: 0px 0px 5px;
+			}
+		}
 	}
 
 	div {
@@ -86,13 +106,18 @@ $gray: #CCCCCC;
 		.list-messages {
 			width: 100%;
 			height: 85%;
-			border: 1px solid $gray;
+			border: none;
+
+			ul {
+				height: 100%;
+				overflow-y: auto;
+			}
 		}
 
 		.message-box {
 			width: 100%;
 			height: 15%;
-			border: 1px solid $gray;
+			border: none;
 
 			textarea {
 				width: 100%;

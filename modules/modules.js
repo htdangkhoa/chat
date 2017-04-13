@@ -1,12 +1,15 @@
 // Identify modules.
 var config = require("../config"),
     express = require("express"),
+    morgan = require("morgan"),
+    helmet = require("helmet"),
     compression = require("compression"),
     mongoose = require("mongoose"),
     passport = require("./passport/passport").passport,
     cookieParser = require("cookie-parser"),
     expressSession = require("express-session"),
-    path = require("path");
+    path = require("path"),
+    fs = require("fs"),
     bodyParser = require("body-parser"),
     cors = require("cors"),
     view = require("consolidate"),
@@ -20,21 +23,27 @@ mongoose.connect(config.url);
 // Export modules.
 module.exports.express = express;
 module.exports.router = express.Router();
+module.exports.io = io;
 module.exports.server = server;
 
 // Use middleware.
+app.use(morgan("dev"));
+app.use(helmet({
+  frameguard: false
+}));
 app.use(compression());
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressSession({
-	secret: 'keyboard cat',
+	secret: "dAnGkho4*7896#",
 	resave: false,
-	saveUninitialized: false
+  saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(passport.deserializeUser());
 app.use(function(req, res, next) {
   res.render = function render(filename, params) {
     var file = path.resolve(path.join(__dirname, "../public/www"), filename);
@@ -44,10 +53,12 @@ app.use(function(req, res, next) {
 
       res.setHeader("Content-Type", "text/html");
       res.end(html);
-    })
+    });
   };
 
   next();
-})
-app.use("/", require("../routes/route"));
+});
+app.use("/", require("../routes/auth"));
+app.use("/", require("../routes/socket"));
+app.use("/", require("../routes/api"));
 app.use(express.static(path.join(__dirname, "../public/www")));

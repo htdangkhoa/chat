@@ -1,5 +1,9 @@
-var app = angular.module("starter", ["ui.router", "ismobile"]);
-app.config(function($stateProvider, $urlRouterProvider, isMobileProvider) {
+var host = "192.168.1.21:8080";
+var hostUrl = "http://" + host;
+
+var app = angular.module("starter", ["restangular", "ui.router", "ismobile"]);
+app
+.config(function(RestangularProvider, $stateProvider, $urlRouterProvider, isMobileProvider) {
 
   // Resize logo on mobile.
   if (isMobileProvider.phone) {
@@ -8,7 +12,7 @@ app.config(function($stateProvider, $urlRouterProvider, isMobileProvider) {
 
   $stateProvider
   .state('home', {
-    url: "/home",
+    url: "/home/:id",
     templateUrl: "../views/home.html",
     controller: "HomeCtrl"
   })
@@ -22,13 +26,47 @@ app.config(function($stateProvider, $urlRouterProvider, isMobileProvider) {
     templateUrl: "../views/sign_up.html",
     controller: "SignCtrl"
   })
+  .state('forgot_password', {
+    url: "/forgot_password",
+    templateUrl: "../views/forgot_password.html"
+  })
+  .state('/reset', {
+    url: "/password/reset/:id",
+    templateUrl: "../views/reset_password.html"
+  })
 
-  if (signed_in) {
-    // Go to home page.
-    $urlRouterProvider.otherwise("/home");
-  }else {
-    // Go to sign in page.
-    $urlRouterProvider.otherwise("/sign_in");
-  }
+  $urlRouterProvider.otherwise("/sign_in");
 
+  RestangularProvider.setBaseUrl(hostUrl);
+  RestangularProvider.setDefaultHeaders({
+    "Access-Control-Allow-Origin": host,
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Accept, X-Requested-With",
+    "Access-Control-Allow-Credentials": "true"
+  });
+
+})
+.factory("$socket", function($rootScope) {
+  var socket = io.connect(hostUrl);
+
+  return {
+    on: function (eventName, callback) {
+      socket.on(eventName, function () {  
+        var args = arguments;
+        $rootScope.$apply(function () {
+          callback.apply(socket, args);
+        });
+      });
+    },
+    emit: function (eventName, data, callback) {
+      socket.emit(eventName, data, function () {
+        var args = arguments;
+        $rootScope.$apply(function () {
+          if (callback) {
+            callback.apply(socket, args);
+          }
+        });
+      });
+    }
+  };
 });

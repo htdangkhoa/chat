@@ -3,10 +3,14 @@
 <center>
   <div class="sign_form">
     <h2>Sign up</h2>
-    <input type="email" class="form-control" placeholder="Email">
-    <input type="password" class="form-control" placeholder="Password">
-    <input type="password" class="form-control" placeholder="Confirm password">
-    <button>Sign up</button>
-    <p>Already have an account? <a ui-sref="sign_in">Sign in</a>.</p>
+    <form action="/authentication/register" method="post">
+    	<input class="form-control" required type="email" name="email" placeholder="Email" value="abc@gmail.com">
+	    <input class="form-control" required type="password" ng-model="password" name="password" placeholder="Password" value="1">
+	    <input class="form-control" required type="password" ng-model="confirm" placeholder="Confirm password" value="1">
+	    <button type="submit" ng-disabled="password !== confirm || password === undefined || confirm === undefined">Sign up</button>
+    </form>
+    
+    
+    <p>Already have an account? <a ui-sref="sign_in">Sign in</a></p>
   </div>
 </center>

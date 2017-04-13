@@ -4,19 +4,19 @@ var bcrypt = require("bcryptjs"),
     salt_rounds = 10;
 
 var User = new Schema({
-  _id: {
-		type: String,
-		default: new mongoose.Types.ObjectId()
-	},
-	email: {
-		type: String,
-		required: true,
-		unique: true
-	},
-	password: {
-		type: String,
-		required: true
-	}
+    _id: {
+    	type: String,
+    	default: new mongoose.Types.ObjectId()
+    },
+    email: {
+    	type: String,
+    	// required: true,
+    	unique: true
+    },
+    password: {
+    	type: String,
+    	required: true
+    }
 });
 
 //Hash password before insert to schema.
