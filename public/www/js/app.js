@@ -32,7 +32,8 @@ app
   })
   .state('/reset', {
     url: "/password/reset/:id",
-    templateUrl: "../views/reset_password.html"
+    templateUrl: "../views/reset_password.html",
+    controller: "ResetPasswordCtrl"
   })
 
   $urlRouterProvider.otherwise("/sign_in");

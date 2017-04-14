@@ -28,8 +28,8 @@
 
         {{/signed_in}}
         {{^signed_in}}
-          if (window.location.href !== "/#!/forgot_password" && window.location.href !== "/#!/password/reset/{{id}}")
-            return window.location.href = "/#!/sign_in";
+          if (window.location.href.indexOf("/#!/forgot_password") === -1 && window.location.href.indexOf("/#!/password/reset") === -1)
+            {return window.location.href = "/#!/sign_in";}
         {{/signed_in}}
       }
 
@@ -39,6 +39,7 @@
     <script type="text/javascript" src="../js/app.js"></script>
     <script type="text/javascript" src="../js/controllers/HomeCtrl.js"></script>
     <script type="text/javascript" src="../js/controllers/SignCtrl.js"></script>
+    <script type="text/javascript" src="../js/controllers/ResetPasswordCtrl.js"></script>
 
     <!-- <title>Loading...</title> -->
   </head>
@@ -46,12 +47,12 @@
     <p>{{signed_in}}</p>
     <p>{{user}}</p>
     <pre class="logo">
-    ______    ______  __       __   ______  __   __   ______ __________
-   |   _  \  /  ____\|  |     |  | /   ___\|  | |  | /      \\__    __/
-|  | |  ||  /____ |   \   /   ||   /    |  | |  ||   /\   |  |  |
-|  | |  ||   ____| \   \ /   / |  |     |  |_|  ||  |__|  |  |  |
-|  |_|  ||  \_____  \   |   /  |   \____|   _   ||   __   |  |  |
-|______/  \______/   \_____/    \______/|__| |__||__|  |__|  |__|
+    ______    ______  __       __   ______  __    __   ______ __________
+   |   _  \  /  ____\|  |     |  | /   ___\|  |  |  | /      \\__    __/
+|  | |  ||  /____ |   \   /   ||   /    |  |  |  ||   /\   |  |  |
+|  | |  ||   ____| \   \ /   / |  |     |  |__|  ||  |__|  |  |  |
+|  |_|  ||  \_____  \   |   /  |   \____|   __   ||   __   |  |  |
+|______/  \______/   \_____/    \______/|__|  |__||__|  |__|  |__|
     </pre>
     <ui-view class="container"></ui-view>
   </body>
