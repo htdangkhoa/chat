@@ -4,7 +4,26 @@ var modules = require("../modules/modules"),
     User = require("../modules/models/user");
 
 router.get("/info", function(req, res) {
-	res.send("ok");
+	var id = req.param("id");
+
+	User.findOne({
+		id: id
+	}, function(err, user) {
+		if (err || user === null) return res.send({
+	      code: 200,
+	      message: "Something went wrong. Please try again later."
+	    });
+
+		if (user !== null) {
+			return res.send({
+				code: 200,
+				message: {
+					id: user.id,
+					email: user.email
+				}
+			});
+		}
+	});
 });
 
 // Export router.

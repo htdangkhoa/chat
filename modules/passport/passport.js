@@ -35,13 +35,13 @@ passport.use(new LocalStrategy({
 
 //Create serializeUser.
 passport.serializeUser(function(user, done) {
-  done(null, user._id);
+  done(null, user.id);
 });
 
 //Create deserializeUser.
 passport.deserializeUser(function(id, done) {
 	User.findOne({
-		_id: id
+		id: id
 	}).then(function(user){
   		if (!user){
   			return done(null, false);

@@ -1,23 +1,39 @@
 <title>Home</title>
 
 <center>
+	<div class="tools dropdown">
+		<button class="dropdown-toggle" data-toggle="dropdown">Settings</button>
+		<ul class="dropdown-menu">
+	      <li><a href="#">Account</a></li>
+	      <li><a href="#">Language</a></li>
+	      <li class="divider"></li>
+	      <li>
+	      	<form action="/authentication/signout" method="POST">
+	      		<button type="submit">Sign out</button>
+	      	</form>
+	      </li>
+	    </ul>
+		<!-- <form action="/authentication/signout" method="POST">
+			<button type="submit">Sign out</button>
+		</form> -->
+	</div>
 	<div class="chat-box">
 		<div class="list-user">
 			<ul>
-				<li ng-repeat="user in listUser">{{ user }}</li>
+				<li ng-repeat="_email in listEmail track by $index">{{ _email }}</li>
 			</ul>
 		</div>
 		<div>
 			<div class="list-messages">
 				<ul>
 					<li ng-repeat="message in listMessage">
-						<h4>{{ message.id }}</h4>
+						<span>{{ message.email }}:</span>
 						<p>{{ message.message }}</p>
 					</li>
 				</ul>
 			</div>
 			<div class="message-box">
-				<textarea ng-model="message" ng-keydown="send($event, myID, message)"></textarea>
+				<textarea placeholder="Type your message..." ng-model="message" ng-keydown="send($event, message)"></textarea>
 			</div>
 		</div>
 	</div>

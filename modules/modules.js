@@ -7,7 +7,8 @@ var config = require("../config"),
     mongoose = require("mongoose"),
     passport = require("./passport/passport").passport,
     cookieParser = require("cookie-parser"),
-    expressSession = require("express-session"),
+    expressSession = require("express-session")
+    MongoStore = require('connect-mongo')(expressSession),
     path = require("path"),
     fs = require("fs"),
     bodyParser = require("body-parser"),
@@ -39,7 +40,9 @@ app.use(cookieParser());
 app.use(expressSession({
 	secret: "dAnGkho4*7896#",
 	resave: false,
-  saveUninitialized: false
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  })
 }));
 app.use(passport.initialize());
 app.use(passport.session());

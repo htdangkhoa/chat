@@ -1,11 +1,11 @@
 <title>Sign in</title>
 
 <center>
-  <div class="sign_form">
+  <div class="sign_form tron_blue">
     <h2>Sign in</h2>
     <form action="/authentication/signin" method="post">
-      <input type="email" class="form-control" placeholder="Email" name="email" value="huynhtran.dangkhoa@gmail.com">
-      <input type="password" class="form-control" placeholder="Password" name="password" value="1">
+      <input type="email" class="form-control" placeholder="Email" name="email">
+      <input type="password" class="form-control" placeholder="Password" name="password">
       <p style="text-align: right;"><a ui-sref="forgot_password">Forgot?</a></p>
       <button>Sign in</button>
       <p>Don't have an account? <a ui-sref="sign_up">Sign up</a></p>
@@ -13,6 +13,6 @@
   </div>
   <p>
     <span style="font-weight: bold; text-decoration: underline !important;">Browser agent</span>
-    <span>: {{ agent }}</span>
+    <span>: {{ ::agent }}</span>
   </p>
 </center>
