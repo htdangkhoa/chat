@@ -85,7 +85,7 @@ router.post("/email/recovery", function(req, res) {
 
           "</span>, Someone requested a password reset for your <span style='font-weight: bold;'>DevChat account.</span></p><a id='btn-reset' href='" 
           
-          + "http://192.168.1.21:8080/#!/password/reset/" + user.id +
+          + "http://127.0.0.1:8080/#!/password/reset/" + user.id +
 
           "' target='_blank'>Reset Password</a><p style='margin-top: 10px;'>If you didn't request this link, you can simply ignore this email.</p><br/><p>Thank you.</p></div></body></html>"
       }, function(err, info) {
