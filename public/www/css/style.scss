@@ -2,6 +2,10 @@ $black: #222222;
 $green: #00FE00;
 $gray: #CCCCCC;
 
+.fa {
+	font-family: FontAwesome !important;
+}
+
 * {
 	font-family: monospace, monospace !important;
 	color: $green !important;
@@ -122,6 +126,26 @@ $gray: #CCCCCC;
 			    overflow: hidden;
 			    white-space: nowrap;
 			    padding: 0px 0px 5px;
+			}
+
+			.divider {
+				padding: 0px;
+				margin-bottom: 5px;
+				cursor: pointer;
+
+				* {
+					color: $gray !important;
+				}
+
+				i {
+					float: right;
+				}
+			}
+
+			.divider:hover {
+				* {
+					color: white !important;
+				}
 			}
 		}
 

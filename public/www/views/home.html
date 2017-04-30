@@ -20,7 +20,15 @@
 	<div class="chat-box">
 		<div class="list-user">
 			<ul>
+				<li class="divider" ng-click="createRoom('channel')">
+					<span>Channels</span>
+					<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+				</li>
 				<li ng-repeat="_email in listEmail track by $index">{{ _email }}</li>
+				<li class="divider" ng-click="createRoom('direct')">
+					<span>Direct messages</span>
+					<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+				</li>
 			</ul>
 		</div>
 		<div>

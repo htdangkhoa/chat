@@ -1,2 +1,140 @@
-*{font-family:monospace, monospace !important;color:#00FE00 !important;background-color:#222 !important;text-decoration:none !important;border-radius:0px !important}* input,* button{border:0.2px solid #ccc !important}* input:focus,* input:active{border:0.2px solid #ccc !important}* li{list-style-type:none}*:focus,*:active{box-shadow:none !important;-webkit-appearance:none !important;outline:none !important}*[disabled]{cursor:not-allowed !important}.container{padding:0px;margin:0px}.logo{border:none;font-weight:bold;overflow:hidden;text-overflow:ellipsis;padding:0px;margin:0px;text-align:center;font-size:13px;margin-left:-15px;margin-top:50px}.sign_form{width:50%;border:0.2px solid #ccc !important;padding:0px 20px 25px 20px;min-width:300px;max-width:350px;margin-bottom:70px}.sign_form a:hover{color:#ccc !important;background-color:#222 !important}.sign_form *{margin-bottom:5px}.tools{width:60%;display:flex;justify-content:flex-end}.tools ul{left:calc(100% - 162px);border:0.2px solid #ccc}.tools ul .divider{background-color:#ccc !important}.tools ul li form button{padding:3px 20px;border:none !important;width:100%;text-align:left}.tools ul li a:hover,.tools ul li form button:hover{color:#ccc !important;background-color:#222 !important;background-image:-webkit-gradient(linear, left top, left bottom, from(#222), to(#222)) !important}.chat-box{border:0.2px solid #ccc;width:60%;height:calc(100vh - 500px);text-align:left;margin-bottom:70px;display:flex;min-width:300px;min-height:400px}.chat-box .list-user{height:100%;width:25%;border-right:0.2px solid #ccc}.chat-box .list-user ul{padding:10px;height:100%}.chat-box .list-user ul li{width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;padding:0px 0px 5px}.chat-box .list-user button{width:100%;border:none !important;border-top:1px solid #ccc !important}.chat-box div{width:75%;height:100%}.chat-box div .list-messages{width:100%;height:85%;border:none}.chat-box div .list-messages ul{height:100%;overflow-y:auto;padding-left:10px}.chat-box div .list-messages ul li{padding-top:10px;display:flex;height:30px}.chat-box div .list-messages ul li span{background-color:#00FE00 !important;color:#222 !important}.chat-box div .list-messages ul li p{margin-left:10px}.chat-box div .message-box{width:100%;height:15%;border:none}.chat-box div .message-box textarea{width:100%;height:100%;resize:none;border-bottom:0px;padding:5px 10px}
+.fa {
+  font-family: FontAwesome !important; }
+
+* {
+  font-family: monospace, monospace !important;
+  color: #00FE00 !important;
+  background-color: #222222 !important;
+  text-decoration: none !important;
+  border-radius: 0px !important; }
+  * input, * button {
+    border: 0.2px solid #CCCCCC !important; }
+  * input:focus, * input:active {
+    border: 0.2px solid #CCCCCC !important; }
+  * li {
+    list-style-type: none; }
+
+*:focus, *:active {
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  outline: none !important; }
+
+*[disabled] {
+  cursor: not-allowed !important; }
+
+.container {
+  padding: 0px;
+  margin: 0px; }
+
+.logo {
+  border: none;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size: 13px;
+  margin-left: -15px;
+  margin-top: 50px; }
+
+.sign_form {
+  width: 50%;
+  border: 0.2px solid #CCCCCC !important;
+  padding: 0px 20px 25px 20px;
+  min-width: 300px;
+  max-width: 350px;
+  margin-bottom: 70px; }
+  .sign_form a:hover {
+    color: #CCCCCC !important;
+    background-color: #222222 !important; }
+  .sign_form * {
+    margin-bottom: 5px; }
+
+.tools {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end; }
+  .tools ul {
+    left: calc(100% - 162px);
+    border: 0.2px solid #CCCCCC; }
+    .tools ul .divider {
+      background-color: #CCCCCC !important; }
+    .tools ul li form button {
+      padding: 3px 20px;
+      border: none !important;
+      width: 100%;
+      text-align: left; }
+    .tools ul li a:hover, .tools ul li form button:hover {
+      color: #CCCCCC !important;
+      background-color: #222222 !important;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(#222222), to(#222222)) !important; }
+
+.chat-box {
+  border: 0.2px solid #CCCCCC;
+  width: 60%;
+  height: calc(100vh - 500px);
+  text-align: left;
+  margin-bottom: 70px;
+  display: flex;
+  min-width: 300px;
+  min-height: 400px; }
+  .chat-box .list-user {
+    height: 100%;
+    width: 25%;
+    border-right: 0.2px solid #CCCCCC; }
+    .chat-box .list-user ul {
+      padding: 10px;
+      height: 100%; }
+      .chat-box .list-user ul li {
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 0px 0px 5px; }
+      .chat-box .list-user ul .divider {
+        padding: 0px;
+        margin-bottom: 5px;
+        cursor: pointer; }
+        .chat-box .list-user ul .divider * {
+          color: #CCCCCC !important; }
+        .chat-box .list-user ul .divider i {
+          float: right; }
+      .chat-box .list-user ul .divider:hover * {
+        color: white !important; }
+    .chat-box .list-user button {
+      width: 100%;
+      border: none !important;
+      border-top: 1px solid #CCCCCC !important; }
+  .chat-box div {
+    width: 75%;
+    height: 100%; }
+    .chat-box div .list-messages {
+      width: 100%;
+      height: 85%;
+      border: none; }
+      .chat-box div .list-messages ul {
+        height: 100%;
+        overflow-y: auto;
+        padding-left: 10px; }
+        .chat-box div .list-messages ul li {
+          padding-top: 10px;
+          display: flex;
+          height: 30px; }
+          .chat-box div .list-messages ul li span {
+            background-color: #00FE00 !important;
+            color: #222 !important; }
+          .chat-box div .list-messages ul li p {
+            margin-left: 10px; }
+    .chat-box div .message-box {
+      width: 100%;
+      height: 15%;
+      border: none; }
+      .chat-box div .message-box textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        border-bottom: 0px;
+        padding: 5px 10px; }
+
 /*# sourceMappingURL=style.css.map */

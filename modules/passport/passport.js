@@ -35,13 +35,14 @@ passport.use(new LocalStrategy({
 
 //Create serializeUser.
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+	// console.log(user)
+  done(null, user.session);
 });
 
 //Create deserializeUser.
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(session, done) {
 	User.findOne({
-		id: id
+		session: session
 	}).then(function(user){
   		if (!user){
   			return done(null, false);

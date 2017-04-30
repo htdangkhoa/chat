@@ -40,11 +40,6 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
   	// $socket.on("disconnect", function(data) {
   	// 	$scope.listUser = data;
   	// });
-  	
-
-	$scope.go = function() {
-		$state.go("sign_in");
-	};
 
 	$scope.send = function(event, message) {
 		if (event.keyCode === 13 && !event.shiftKey && message !== "" && message !== undefined){
@@ -60,6 +55,26 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
 			}, 0);
 		}		
 	}
+
+  $scope.createRoom = function(type_room) {
+    switch (type_room) {
+      case "channel": {
+        break;
+      }
+      case "direct": {
+        Restangular
+        .one("/get_user")
+        .get()
+        .then(function(response) {
+          console.log("Result: ", response.message);
+        })
+        .catch(function(exeption) {
+          console.log("Error: ", exeption)
+        })
+        break;
+      }
+    }
+  }
 
   // $scope.logout = function() {
   //   Restangular

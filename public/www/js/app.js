@@ -1,4 +1,4 @@
-var host = "192.168.1.21:8080";
+var host = "127.0.0.1:8080";
 var hostUrl = "http://" + host;
 
 var app = angular.module("starter", ["restangular", "ui.router", "ismobile"]);

@@ -7,8 +7,7 @@ var config = require("../config"),
     mongoose = require("mongoose"),
     passport = require("./passport/passport").passport,
     cookieParser = require("cookie-parser"),
-    expressSession = require("express-session")
-    MongoStore = require('connect-mongo')(expressSession),
+    session = require('client-sessions'),
     path = require("path"),
     fs = require("fs"),
     bodyParser = require("body-parser"),
@@ -37,12 +36,11 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(expressSession({
-	secret: "dAnGkho4*7896#",
-	resave: false,
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection
-  })
+app.use(session({
+  cookieName: 'session',
+  secret: 'dAnGkho4*7896#'
+  // duration: 5000,
+  // activeDuration: 5 * 60 * 1000,
 }));
 app.use(passport.initialize());
 app.use(passport.session());

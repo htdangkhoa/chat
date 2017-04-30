@@ -5,17 +5,17 @@ var bcrypt = require("bcryptjs"),
     salt_rounds = 10;
 
 var User = new Schema({
-    // _id: {
-    // 	type: String,
-    // 	default: new mongoose.Types.ObjectId()
-    // },
-    id: {
+    _id: {
+    	type: Schema.Types.ObjectId,
+    	default: function () { return mongoose.Types.ObjectId() }
+    },
+    session: {
         type: String,
         default: uuid.v4()
     },
     email: {
     	type: String,
-    	// required: true,
+    	required: true,
     	unique: true
     },
     password: {
