@@ -24,6 +24,7 @@ mongoose.connect(config.url);
 module.exports.express = express;
 module.exports.router = express.Router();
 module.exports.io = io;
+module.exports.PORT = process.env.PORT || 8080;
 module.exports.server = server;
 
 // Use middleware.

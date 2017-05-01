@@ -71,70 +71,129 @@
       background-image: -webkit-gradient(linear, left top, left bottom, from(#222222), to(#222222)) !important; }
 
 .chat-box {
-  border: 0.2px solid #CCCCCC;
-  width: 60%;
-  height: calc(100vh - 500px);
-  text-align: left;
-  margin-bottom: 70px;
-  display: flex;
-  min-width: 300px;
-  min-height: 400px; }
-  .chat-box .list-user {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; }
+  .chat-box .info {
+    height: auto;
+    width: 100%;
+    padding: 10px 10px 0px 10px;
+    cursor: pointer; }
+    .chat-box .info div {
+      width: 100%;
+      display: flex; }
+      .chat-box .info div p {
+        font-size: 20px;
+        width: 100%; }
+      .chat-box .info div i {
+        padding-top: 8px; }
+    .chat-box .info .dropdown-menu {
+      top: 35px;
+      margin: 0px;
+      background-color: #333 !important;
+      padding: 0px; }
+      .chat-box .info .dropdown-menu li {
+        text-align: right; }
+        .chat-box .info .dropdown-menu li a {
+          background-color: #333 !important; }
+      .chat-box .info .dropdown-menu .divider {
+        background-color: #CCCCCC !important;
+        margin: 0px; }
+    .chat-box .info i {
+      float: right; }
+  .chat-box .left-content {
     height: 100%;
-    width: 25%;
-    border-right: 0.2px solid #CCCCCC; }
-    .chat-box .list-user ul {
+    width: 220px;
+    border-right: 0.2px solid #CCCCCC;
+    position: absolute; }
+    .chat-box .left-content .channel-and-rooms {
       padding: 10px;
-      height: 100%; }
-      .chat-box .list-user ul li {
+      height: calc(100% - 68px);
+      overflow-y: auto;
+      margin: 0px; }
+      .chat-box .left-content .channel-and-rooms li {
         width: 100%;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
         padding: 0px 0px 5px; }
-      .chat-box .list-user ul .divider {
+      .chat-box .left-content .channel-and-rooms .divider {
         padding: 0px;
         margin-bottom: 5px;
-        cursor: pointer; }
-        .chat-box .list-user ul .divider * {
+        cursor: pointer;
+        display: flex; }
+        .chat-box .left-content .channel-and-rooms .divider * {
           color: #CCCCCC !important; }
-        .chat-box .list-user ul .divider i {
-          float: right; }
-      .chat-box .list-user ul .divider:hover * {
+        .chat-box .left-content .channel-and-rooms .divider p {
+          width: 100%; }
+        .chat-box .left-content .channel-and-rooms .divider i {
+          padding-top: 5px; }
+      .chat-box .left-content .channel-and-rooms .divider:hover * {
         color: white !important; }
-    .chat-box .list-user button {
+    .chat-box .left-content button {
       width: 100%;
       border: none !important;
       border-top: 1px solid #CCCCCC !important; }
-  .chat-box div {
-    width: 75%;
-    height: 100%; }
-    .chat-box div .list-messages {
-      width: 100%;
-      height: 85%;
-      border: none; }
-      .chat-box div .list-messages ul {
+  .chat-box .right-content {
+    width: calc(100% - 220px);
+    border: 0.2px solid #CCCCCC;
+    height: calc(100% - 2px);
+    position: absolute;
+    left: 220px;
+    overflow: hidden; }
+    .chat-box .right-content div {
+      height: calc(100% - 80px); }
+      .chat-box .right-content div .list-message {
         height: 100%;
         overflow-y: auto;
         padding-left: 10px; }
-        .chat-box div .list-messages ul li {
+        .chat-box .right-content div .list-message li {
           padding-top: 10px;
           display: flex;
           height: 30px; }
-          .chat-box div .list-messages ul li span {
+          .chat-box .right-content div .list-message li span {
             background-color: #00FE00 !important;
-            color: #222 !important; }
-          .chat-box div .list-messages ul li p {
+            color: #222 !important;
+            font-weight: bold;
+            padding: 0px 3px; }
+          .chat-box .right-content div .list-message li p {
             margin-left: 10px; }
-    .chat-box div .message-box {
-      width: 100%;
-      height: 15%;
-      border: none; }
-      .chat-box div .message-box textarea {
-        width: 100%;
+    .chat-box .right-content .message-box {
+      position: absolute;
+      bottom: -3px;
+      height: 80px;
+      width: 100%; }
+      .chat-box .right-content .message-box textarea {
         height: 100%;
-        resize: none;
-        border-bottom: 0px;
-        padding: 5px 10px; }
+        width: 100%;
+        border: 0px;
+        border-bottom: 0.2px solid #CCCCCC;
+        border-top: 0.2px solid #CCCCCC; }
+
+.modal-lg {
+  margin: 0px; }
+  .modal-lg .modal-content {
+    height: 100vh;
+    width: 100vw; }
+    .modal-lg .modal-content .modal-header {
+      border: 0px; }
+      .modal-lg .modal-content .modal-header button {
+        border: 0px !important; }
+    .modal-lg .modal-content .modal-body div {
+      display: flex; }
+      .modal-lg .modal-content .modal-body div input {
+        width: 100%;
+        font-size: 20px;
+        padding: 0px 10px;
+        height: 50px; }
+      .modal-lg .modal-content .modal-body div button {
+        width: 50px; }
+    .modal-lg .modal-content .modal-body ul {
+      height: calc(100vh - 170px);
+      overflow-y: auto;
+      margin-top: 20px;
+      padding: 0px; }
+      .modal-lg .modal-content .modal-body ul div {
+        padding: 0px 0px 15px; }
 
 /*# sourceMappingURL=style.css.map */

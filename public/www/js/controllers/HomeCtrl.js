@@ -1,4 +1,4 @@
-app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeout, $stateParams) {
+app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeout, $stateParams, $filter, $q) {
   	// $scope.listUser = [];
     // $scope.listMessage = [];
     // $scope.email = "";
@@ -62,18 +62,32 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
         break;
       }
       case "direct": {
-        Restangular
+        
+        break;
+      }
+    }
+  }
+
+  var call = 1;
+  $scope.search = function(q) {
+    // $scope.search = $scope.users;
+    // $scope.search = $filter("filter")($scope.search, {email: q.toLowerCase()});
+
+    let canceler = $q.defer();
+    canceler.resolve();
+    $timeout(function(){
+      Restangular
         .one("/get_user")
         .get()
         .then(function(response) {
+          $scope.users = response.message;
           console.log("Result: ", response.message);
+          console.table(response.message)
         })
         .catch(function(exeption) {
           console.log("Error: ", exeption)
         })
-        break;
-      }
-    }
+    }, 3000)
   }
 
   // $scope.logout = function() {

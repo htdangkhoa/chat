@@ -13,24 +13,26 @@ router.get("/info", function(req, res) {
 
 	User.findOne({
 		_id: id
-	}, function(err, user) {
-		if (err || user === null) return res.status(200).send({
+	}, ["_id", "email", "directs", "channels"])
+	.then(function(user) {
+		return res.status(200).send({
+			message: user
+		});
+	})
+	.catch(function(error) {
+		return res.status(200).send({
 	      message: "Something went wrong. Please try again later."
 	    });
-
-		if (user !== null) {
-			return res.status(200).send({
-				message: {
-					id: user.id,
-					email: user.email
-				}
-			});
-		}
-	});
+	})
 });
 
+/**
+ * Name:	GET ALL USER
+ * Method:	GET
+ * Params:	None
+ */
 router.get("/get_user", function(req, res) {
-	User.find({})
+	User.find({}, ["_id", "email"])
 	.then(function(user) {
 		res.status(200).send({
 			message: user

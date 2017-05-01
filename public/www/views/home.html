@@ -1,48 +1,72 @@
 <title>Home</title>
 
-<center>
-	<div class="tools dropdown">
-		<button class="dropdown-toggle" data-toggle="dropdown">Settings</button>
-		<ul class="dropdown-menu">
-	      <li><a href="#">Account</a></li>
-	      <li><a href="#">Language</a></li>
-	      <li class="divider"></li>
-	      <li>
-	      	<form action="/authentication/signout" method="POST">
-	      		<button type="submit">Sign out</button>
-	      	</form>
-	      </li>
-	    </ul>
-		<!-- <form action="/authentication/signout" method="POST">
-			<button type="submit">Sign out</button>
-		</form> -->
+<div class="chat-box">
+	<div class="left-content">
+		<div class="info">
+			<div data-toggle="dropdown">
+				<p>DevChat</p>
+				<i class="fa fa-angle-down" aria-hidden="true"></i>
+			</div>
+			<ul class="dropdown-menu dropdown-menu-right" style="top: 35px;">
+				<li><a href="#">HTML</a></li>
+				<li><a href="#">CSS</a></li>
+				<li role="presentation" class="divider"></li>
+				<li><a href="#">Sign out</a></li>
+			</ul>
+			<span>{{email}}</span>
+		</div>
+		<ul class="channel-and-rooms">
+			<li class="divider">
+				<p>Channels</p>
+				<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+			</li>
+			<li ng-repeat="_email in listEmail track by $index">{{ _email }}</li>
+			<li class="divider" data-toggle="modal" data-target="#myModal" ng-click="createRoom('direct')">
+				<p>Direct messages</p>
+				<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+			</li>
+		</ul>
 	</div>
-	<div class="chat-box">
-		<div class="list-user">
-			<ul>
-				<li class="divider" ng-click="createRoom('channel')">
-					<span>Channels</span>
-					<i class="fa fa-plus-square-o" aria-hidden="true"></i>
-				</li>
-				<li ng-repeat="_email in listEmail track by $index">{{ _email }}</li>
-				<li class="divider" ng-click="createRoom('direct')">
-					<span>Direct messages</span>
-					<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+	<div class="right-content">
+		<div>
+			<ul class="list-message">
+				<li ng-repeat="message in listMessage">
+					<span>{{ message.email }}</span>
+					<p>{{ message.message }}</p>
 				</li>
 			</ul>
 		</div>
-		<div>
-			<div class="list-messages">
-				<ul>
-					<li ng-repeat="message in listMessage">
-						<span>{{ message.email }}:</span>
-						<p>{{ message.message }}</p>
-					</li>
-				</ul>
-			</div>
-			<div class="message-box">
-				<textarea placeholder="Type your message..." ng-model="message" ng-keydown="send($event, message)"></textarea>
-			</div>
+		<div class="message-box">
+			<textarea placeholder="Type your message..." ng-model="message" ng-keydown="send($event, message)"></textarea>
 		</div>
 	</div>
-</center>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Direct message</h4>
+        </div>
+        <div class="modal-body">
+					<div>
+						<input type="text" placeholder="Enter email to start a conversation" ng-model="query" ng-keyup="search(query)"/>
+						<button>Go</button>
+					</div>
+					<ul>
+						<div ng-repeat="user in users">
+							{{user.email}}
+						</div>
+						<div ng-repeat="user in users">
+							{{user.email}}
+						</div>
+					</ul>
+        </div>
+        <!--<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>

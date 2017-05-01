@@ -31,14 +31,6 @@ router.get("/", function(req, res) {
   });
 });
 
-router.get("/test", function(req, res) {
-  res.send(req.session);
-})
-
-// router.get("/authentication/signin", function(req, res) {
-//   res.redirect("/");
-// });
-
 /**
  * Name:    REGISTER
  * Method:  POST
@@ -63,7 +55,6 @@ router.post("/authentication/register", function(req, res){
 			return res.send(err.errmsg);
 		}else {
 			console.log(result);
-      req.session.destroy();
 			res.redirect("/");
 		}
 	});
@@ -124,13 +115,16 @@ router.post("/email/recovery", function(req, res) {
  * Method:  POST
  * Params:  id, new_password
  */
-router.put("/password/reset", function(req, res) {
+router.post("/password/reset", function(req, res) {
+  var ObjectId = require("mongoose").Types.ObjectId;
   var id = req.param("id");
   var new_password = req.body.new_password;
 
   User.findOne({
-    _id: id
+    _id: new ObjectId(id)
   }, function(err, user) {
+    
+
     if (err || user === null) return res.send({
       code: 200,
       message: "Something went wrong. Please try again later."
@@ -157,6 +151,7 @@ router.put("/password/reset", function(req, res) {
  */
 router.post("/authentication/signout", function(req, res) {
   req.logout();
+  req.session.destroy();
   res.redirect("/");
 });
 

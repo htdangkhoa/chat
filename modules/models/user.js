@@ -11,7 +11,7 @@ var User = new Schema({
     },
     session: {
         type: String,
-        default: uuid.v4()
+        default: function() { return uuid.v4() }
     },
     email: {
     	type: String,
@@ -21,6 +21,14 @@ var User = new Schema({
     password: {
     	type: String,
     	required: true
+    },
+    directs: {
+        type: Array,
+        default: []
+    },
+    channels: {
+        type: Array,
+        default: []
     }
 });
 
