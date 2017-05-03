@@ -1,4 +1,4 @@
-app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeout, $stateParams, $filter, $q) {
+app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeout, $stateParams, $filter, $q, $location) {
   	// $scope.listUser = [];
     // $scope.listMessage = [];
     // $scope.email = "";
@@ -7,9 +7,12 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
       checkPassport();
 
       Restangular
-      .one("/info?id=" + $stateParams.id)
+      .one("/v1/info?id=" + $stateParams.id)
       .get()
       .then(function(response) {
+        $scope.myID = response.message._id;
+        $scope.directs = response.message.directs;
+
         $scope.email = response.message.email;
 
         $socket.emit("Connected", $scope.email);
@@ -30,6 +33,18 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
       .then(function(error) {
         console.log(error);
       });
+
+      Restangular
+      .one("/v1/get_user")
+      .get()
+      .then(function(response) {
+        $scope.users = response.message;
+        console.log("Result: ", response.message);
+        console.table(response.message)
+      })
+      .catch(function(exeption) {
+        console.log("Error: ", exeption)
+      })
     });
 
     $socket.on("chat", function(data) {
@@ -90,14 +105,42 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
     }, 3000)
   }
 
-  // $scope.logout = function() {
-  //   Restangular
-  //   .one("/authentication/signout")
-  //   .post()
-  //   .then(function(response) {
-  //     $state.go("sign_in")
-  //   }, function(error) {
+  $scope.createDirectMessage = function(id, email) {
+    var requestToServer = function() {
+      Restangular
+      .all("/v1/direct/create")
+      .post({
+        myID: $scope.myID,
+        otherID: id
+      })
+      .then(function(response) {
+        for (var i = 0; i < response.message.length; i++) {
+          if ($scope.myID === response.message[i]._id) {
+            $scope.directs = response.message[i].directs;
+          }
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
 
-  //   })
-  // }
+    if ($scope.directs.length == 0) {
+      requestToServer();
+    }else {
+      $scope.check = false;
+
+      for (var i = 0; i < $scope.directs.length; i++) {
+        if ($scope.directs[i].arrEmail[1] == email) {
+          $scope.check = true;
+        }
+
+        if (i === $scope.directs.length - 1) {
+          if (!$scope.check) {
+            requestToServer();
+          }
+        }
+      }
+    }
+  }
 });

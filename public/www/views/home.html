@@ -11,7 +11,7 @@
 				<li><a href="#">HTML</a></li>
 				<li><a href="#">CSS</a></li>
 				<li role="presentation" class="divider"></li>
-				<li><a href="#">Sign out</a></li>
+				<li><a href="/authentication/signout">Sign out</a></li>
 			</ul>
 			<span>{{email}}</span>
 		</div>
@@ -20,11 +20,13 @@
 				<p>Channels</p>
 				<i class="fa fa-plus-square-o" aria-hidden="true"></i>
 			</li>
-			<li ng-repeat="_email in listEmail track by $index">{{ _email }}</li>
+			<!--<li ng-repeat="_email in listEmail track by $index">{{ _email }}</li>-->
+			<li ng-repeat="user in users" ng-click="createDirectMessage(user._id, user.email)">{{user.email}}</li>
 			<li class="divider" data-toggle="modal" data-target="#myModal" ng-click="createRoom('direct')">
 				<p>Direct messages</p>
 				<i class="fa fa-plus-square-o" aria-hidden="true"></i>
 			</li>
+			<li ng-repeat="direct in directs">{{ direct.arrEmail[1] }}</li>
 		</ul>
 	</div>
 	<div class="right-content">

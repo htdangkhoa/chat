@@ -39,8 +39,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
   cookieName: 'session',
-  secret: 'dAnGkho4*7896#'
-  // duration: 5000,
+  secret: 'dAnGkho4*7896#',
+  duration:1000 * 60 * 60 * 24 * 365 * 999,
   // activeDuration: 5 * 60 * 1000,
 }));
 app.use(passport.initialize());
@@ -62,5 +62,6 @@ app.use(function(req, res, next) {
 });
 app.use("/", require("../routes/auth"));
 app.use("/", require("../routes/socket"));
-app.use("/", require("../routes/api"));
+app.use("/v1", require("../routes/api"));
+app.use("/dev", require("../routes/dev"));
 app.use(express.static(path.join(__dirname, "../public/www")));

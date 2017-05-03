@@ -149,9 +149,11 @@ router.post("/password/reset", function(req, res) {
  * Method:  GET
  * Params:  None
  */
-router.post("/authentication/signout", function(req, res) {
+router.get("/authentication/signout", function(req, res) {
+  console.log(req.session)
   req.logout();
   req.session.destroy();
+  console.log(req.session)
   res.redirect("/");
 });
 

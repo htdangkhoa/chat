@@ -2,8 +2,11 @@ var mongoose = require("mongoose"),
     Schema = mongoose.Schema;
 
 var Message = new Schema({
-    room_id: {
+    chat_content: {
         type: Array,
         default: []
     }
 });
+
+//Export modules.
+module.exports = mongoose.model("message", Message);

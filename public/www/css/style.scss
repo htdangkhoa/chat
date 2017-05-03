@@ -118,6 +118,9 @@ $gray: #CCCCCC;
 		width: 100%;
 		padding: 10px 10px 0px 10px;
 		cursor: pointer;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 
 		// h3 {
 		// 	margin: 0px;
