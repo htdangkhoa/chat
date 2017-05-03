@@ -17,3 +17,28 @@ Run
 ```sh
 $ npm start
 ```
+
+## Test
+#### Authentication
+Route | Method | Params
+--- | ------ | ------
+`/authentication/register` | `POST` | `email, password`
+`/authentication/signin` | `POST` | `email, password`
+`/authentication/signout` | `GET` | `NONE`
+`/email/recovery` | `POST` | `email`
+`/password/reset` | `POST` | `id, new_password`
+
+#### API v1
+Route | Method | Params
+--- | ------ | ------
+`/v1/info` | `GET` | `id`
+`/v1/get_user` | `GET` | `NONE`
+`/v1/direct/create` | `POST` | `myID, otherID`
+
+#### Dev
+Route | Method | Params
+--- | ------ | ------
+`/dev/user/reset` | `GET` | `NONE`
+`/dev/session/reset` | `GET` | `NONE`
+
+
