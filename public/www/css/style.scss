@@ -182,25 +182,44 @@ $gray: #CCCCCC;
 			    overflow: hidden;
 			    white-space: nowrap;
 			    padding: 0px 0px 5px;
+				cursor: pointer;
+				display: flex;
+
+				p {
+					width: 100%;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+
+				i {
+					// float: right;
+					padding-top: 5px;
+					display: none;
+				}
+			}
+
+			li:hover {
+				p {
+					padding-right: 10px;
+				}
+
+				i {
+					display: block;
+				}
 			}
 
 			.divider {
 				padding: 0px;
 				margin-bottom: 5px;
-				cursor: pointer;
 				display: flex;
 
 				* {
 					color: $gray !important;
 				}
 
-				p {
-					width: 100%;
-				}
-
 				i {
-					// float: right;
-					padding-top: 5px;
+					display: block !important;
 				}
 			}
 

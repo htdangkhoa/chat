@@ -11,6 +11,13 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
       .get()
       .then(function(response) {
         $scope.myID = response.message._id;
+
+        for (var i = 0; i < response.message.directs.length; i++) {
+          if (!response.message.directs[i].visible) {
+            response.message.directs.splice(i, 1);
+          }
+        }
+
         $scope.directs = response.message.directs;
 
         $scope.email = response.message.email;
@@ -39,8 +46,8 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
       .get()
       .then(function(response) {
         $scope.users = response.message;
-        console.log("Result: ", response.message);
-        console.table(response.message)
+        // console.log("Result: ", response.message);
+        // console.table(response.message)
       })
       .catch(function(exeption) {
         console.log("Error: ", exeption)
@@ -105,13 +112,13 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
     }, 3000)
   }
 
-  $scope.createDirectMessage = function(id, email) {
+  $scope.createDirectMessage = function(email, email) {
     var requestToServer = function() {
       Restangular
       .all("/v1/direct/create")
       .post({
-        myID: $scope.myID,
-        otherID: id
+        myEmail: $scope.email,
+        otherEmail: email
       })
       .then(function(response) {
         for (var i = 0; i < response.message.length; i++) {
@@ -119,6 +126,7 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
             $scope.directs = response.message[i].directs;
           }
         }
+        console.log(response)
       })
       .catch(function(error) {
         console.log(error);
@@ -131,7 +139,7 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
       $scope.check = false;
 
       for (var i = 0; i < $scope.directs.length; i++) {
-        if ($scope.directs[i].arrEmail[1] == email) {
+        if ($scope.directs[i].arrEmail[1] == email && $scope.directs[i].visible) {
           $scope.check = true;
         }
 
@@ -142,5 +150,23 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
         }
       }
     }
+  }
+
+  $scope.deleteDirectMessage = function(id) {
+    console.log(id);
+    Restangular
+    .all("/v1/direct/remove")
+    .post({
+      myEmail: $scope.email,
+      directID: id
+    })
+    .then(function(response) {
+      $scope.directs = response.message.directs;
+      console.log(response);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+
   }
 });

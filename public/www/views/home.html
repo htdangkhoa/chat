@@ -21,12 +21,15 @@
 				<i class="fa fa-plus-square-o" aria-hidden="true"></i>
 			</li>
 			<!--<li ng-repeat="_email in listEmail track by $index">{{ _email }}</li>-->
-			<li ng-repeat="user in users" ng-click="createDirectMessage(user._id, user.email)">{{user.email}}</li>
-			<li class="divider" data-toggle="modal" data-target="#myModal" ng-click="createRoom('direct')">
+			<li ng-repeat="user in users" ng-click="createDirectMessage(user.email, user.email)">{{user.email}}</li>
+			<li class="divider" data-toggle="modal" data-target="#myModal" ng-click="createRoom('direct')" title="Open a direct message">
 				<p>Direct messages</p>
 				<i class="fa fa-plus-square-o" aria-hidden="true"></i>
 			</li>
-			<li ng-repeat="direct in directs">{{ direct.arrEmail[1] }}</li>
+			<li ng-repeat="direct in directs" ng-show="direct.visible">
+				<p>{{ direct.arrEmail[1] }}</p>
+				<i class="fa fa-minus-square-o" aria-hidden="true" ng-click="deleteDirectMessage(direct._id)"></i>
+			</li>
 		</ul>
 	</div>
 	<div class="right-content">

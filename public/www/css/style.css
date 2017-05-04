@@ -119,18 +119,29 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        padding: 0px 0px 5px; }
+        padding: 0px 0px 5px;
+        cursor: pointer;
+        display: flex; }
+        .chat-box .left-content .channel-and-rooms li p {
+          width: 100%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden; }
+        .chat-box .left-content .channel-and-rooms li i {
+          padding-top: 5px;
+          display: none; }
+      .chat-box .left-content .channel-and-rooms li:hover p {
+        padding-right: 10px; }
+      .chat-box .left-content .channel-and-rooms li:hover i {
+        display: block; }
       .chat-box .left-content .channel-and-rooms .divider {
         padding: 0px;
         margin-bottom: 5px;
-        cursor: pointer;
         display: flex; }
         .chat-box .left-content .channel-and-rooms .divider * {
           color: #CCCCCC !important; }
-        .chat-box .left-content .channel-and-rooms .divider p {
-          width: 100%; }
         .chat-box .left-content .channel-and-rooms .divider i {
-          padding-top: 5px; }
+          display: block !important; }
       .chat-box .left-content .channel-and-rooms .divider:hover * {
         color: white !important; }
     .chat-box .left-content button {

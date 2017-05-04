@@ -33,7 +33,8 @@ Route | Method | Params
 --- | ------ | ------
 `/v1/info` | `GET` | `id`
 `/v1/get_user` | `GET` | `NONE`
-`/v1/direct/create` | `POST` | `myID, otherID`
+`/v1/direct/create` | `POST` | `myEmail, otherEmail`
+`/v1/direct/remove` | `POST` | `myEmail, directID`
 
 #### Dev
 Route | Method | Params

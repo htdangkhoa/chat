@@ -17,10 +17,10 @@ router.get("/user/reset", function(req, res) {
 			user.directs = [];
 			user.save();
 		})
-		res.send("OK");
+		return res.send(users);
 	})
 	.catch(function(error) {
-		res.send(error);
+		return res.send(error);
 	})
 });
 

@@ -19,6 +19,7 @@ var config = require("../config"),
     io = socket(server);
 
 mongoose.connect(config.url);
+mongoose.Promise = require('bluebird');
 
 // Export modules.
 module.exports.express = express;
