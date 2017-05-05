@@ -126,7 +126,8 @@
           width: 100%;
           text-overflow: ellipsis;
           white-space: nowrap;
-          overflow: hidden; }
+          overflow: hidden;
+          margin: 0px; }
         .chat-box .left-content .channel-and-rooms li i {
           padding-top: 5px;
           display: none; }
@@ -182,7 +183,8 @@
         width: 100%;
         border: 0px;
         border-bottom: 0.2px solid #CCCCCC;
-        border-top: 0.2px solid #CCCCCC; }
+        border-top: 0.2px solid #CCCCCC;
+        padding: 5px 8px; }
 
 .modal-lg {
   margin: 0px; }

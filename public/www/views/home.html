@@ -27,7 +27,7 @@
 				<i class="fa fa-plus-square-o" aria-hidden="true"></i>
 			</li>
 			<li ng-repeat="direct in directs" ng-show="direct.visible">
-				<p>{{ direct.arrEmail[1] }}</p>
+				<p ng-click="test(direct._id, 'direct')">{{ (direct.arrEmail[0] === email) ? direct.arrEmail[1] : direct.arrEmail[0] }}</p>
 				<i class="fa fa-minus-square-o" aria-hidden="true" ng-click="deleteDirectMessage(direct._id)"></i>
 			</li>
 		</ul>

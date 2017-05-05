@@ -169,4 +169,19 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
     })
 
   }
+
+  $scope.test = function(id, type) {
+    Restangular
+    .all("/test")
+    .post({
+      directID: id,
+      type: type
+    })
+    .then(function(response) {
+      console.log(response);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  }
 });

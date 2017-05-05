@@ -190,6 +190,7 @@ $gray: #CCCCCC;
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					overflow: hidden;
+					margin: 0px;
 				}
 
 				i {
@@ -284,6 +285,7 @@ $gray: #CCCCCC;
 				border: 0px;
 				border-bottom: 0.2px solid $gray;
 				border-top: 0.2px solid $gray;
+				padding: 5px 8px;
 			}
 		}
 	}
