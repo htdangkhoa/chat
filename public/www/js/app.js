@@ -1,5 +1,6 @@
 var host = "127.0.0.1:8080";
 var hostUrl = "http://" + host;
+var audio = new Audio("../res/sound.mp3");
 
 var app = angular.module("starter", ["restangular", "ui.router", "ismobile"]);
 app
@@ -48,7 +49,7 @@ app
 
 })
 .factory("$socket", function($rootScope) {
-  var socket = io.connect(hostUrl + "/v1");
+  var socket = io.connect(hostUrl);
 
   return {
     on: function (eventName, callback) {
@@ -70,4 +71,24 @@ app
       });
     }
   };
+})
+.factory("$notify", function($rootScope) {
+  return {
+    register: function() {
+      Notification.requestPermission();
+    },
+    push: function(data) {
+      Notification.requestPermission(function(permission) {
+        if (permission === "granted") {
+          var noti = new Notification(data.title, {
+            body: data.body
+          });
+          setTimeout(function() {
+            noti.close();
+          }, 5000)
+          audio.play();
+        }
+      })
+    }
+  }
 });

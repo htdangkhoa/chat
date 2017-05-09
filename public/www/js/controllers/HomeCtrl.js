@@ -1,4 +1,4 @@
-app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeout, $stateParams, $filter, $q, $location) {
+app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeout, $stateParams, $filter, $q, $location, $notify) {
   	// $scope.listUser = [];
     // $scope.listMessage = [];
     // $scope.email = "";
@@ -6,6 +6,8 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
 
     angular.element(document).ready(function() {
       checkPassport();
+
+      $notify.register();
 
       Restangular
       .one("/v1/info?id=" + $stateParams.id)
@@ -53,22 +55,27 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
       .catch(function(exeption) {
         console.log("Error: ", exeption)
       })
+
+      $socket.on("messages", function(data) {
+        console.log(data);
+        $notify.push({
+          title: data.email,
+          body: data.content
+        });
+      })
     });
 
     // $socket.on("chat", function(data) {
     //   console.log(data)
     //   $scope.listMessage = data;
     // })
-    $socket.on("messages", function(data) {
-      console.log(data)
-    })
 
   	// $socket.on("disconnect", function(data) {
   	// 	$scope.listUser = data;
   	// });
 
 	$scope.send = function(event, message) {
-		if (event.keyCode === 13 && !event.shiftKey && message !== "" && message !== undefined){
+		if (event.keyCode === 13 && !event.shiftKey && message !== "" && message !== undefined && message !== null){
 			// console.log(id, message);
 
 			// $socket.emit("chat", {
@@ -87,7 +94,8 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
         text: message
       })
       $timeout(function(){
-				$("textarea").val("");
+				// $("textarea").val("");
+        $scope.message = null;
 			}, 0);
 		}		
 	}
@@ -186,6 +194,7 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
   }
 
   $scope.test = function(id, type) {
+    console.log(id)
     // Restangular
     // .all("/test")
     // .post({

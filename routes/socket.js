@@ -35,12 +35,15 @@ io.on("connection", function(socket) {
 
 	// Handle room.
 	socket.on("listen", function(room) {
+		console.log(room)
 		socket.join(room);
 	})
 
 	socket.on("messages", function(message) {
+		console.log(message);
 		socket.broadcast.to(message.room).emit("messages", {
-			content: message.email + ": " + message.text
+			email: message.email.substring(0, message.email.indexOf("@")),
+			content: message.text
 		})
 	})
 });
