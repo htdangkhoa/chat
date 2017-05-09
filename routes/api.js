@@ -68,66 +68,66 @@ router.post("/direct/create", function(req, res) {
 	}, ["email", "directs"])
 	.then(function(users) {
 		(users.length > 1) ? createRoom() : displayError();
+		// (users.length > 1) ? addRoomToDirectArray() : displayError();
 
-		  ///////////////////////////////////////////////////
-		 // Create room function.                         //
-		///////////////////////////////////////////////////
+		//   ///////////////////////////////////////////////////
+		//  // Create room function.                         //
+		// ///////////////////////////////////////////////////
 		function createRoom() {
-			var check = false;
-
-			/**Start check already created room. */
-			for (var i = 0; i < users.length; i++) {
-				switch (users[i].email) {
-					case myEmail: {
-						var directs = users[i].directs;
-
-						/**Reset directs array to empty. */
-						users[i].directs = [];
-
-						for (var j = 0; j < directs.length; j++) {
-							if (directs[j].arrEmail.indexOf(otherEmail) !== -1 && !directs[j].visible) {
-								check = true;
-								directs[j].visible = true;
-
-								/**Resave directs array. */
-								users[i].directs = directs;
-								users[i].save();
-								console.log(users[i].directs[j])
-								break;
+			users.forEach(function(u) {
+				var check = false;
+				if (u.email === myEmail) {
+					var _directs = u.directs;
+					u.directs = [];
+					_directs.forEach(function(d) {
+						if (d.arrEmail.indexOf(myEmail) !== -1 && d.arrEmail.indexOf(otherEmail) !== -1) {
+							check = true;
+							if(!d.visible){
+								console.log("enable visible");
+								d.visible = true;
 							}
 						}
+					});
+					console.log("TEST", _directs);
+					u.directs = _directs;
+					u.save();					
+					if(!check) {
+						addRoomToDirectArray();
+					}else {
+						res.status(200).send({
+							message: users
+						})
 					}
 				}
-			}
-			/**End check. */
+				// u.save();
+			})
+			// addRoomToDirectArray();
+		}
+		// res.status(200).send({
+		// 	message: users
+		// })
 
-			if (!check) {
-				// Start create room.
-				var  message = new Message();
-				message
-				.save()
-				.then(function(msg) {
-					var directID = msg._id;
-					users.forEach(function(user) {
-						user.directs.push({
-							_id: directID,
-							arrEmail: [myEmail, otherEmail],
-							visible: true
-						})
-						user.save();
+		function addRoomToDirectArray() {
+			var  message = new Message();
+			message
+			.save()
+			.then(function(msg) {
+				var directID = msg._id;
+				users.forEach(function(user) {
+					user.directs.push({
+						_id: directID,
+						arrEmail: [myEmail, otherEmail],
+						visible: true
 					})
-					return res.status(201).send({
-						message: users
-					});
+					user.save();
 				})
-				.catch(function(error) {
-					displayError();
-				});
-			}else {
 				return res.status(201).send({
 					message: users
 				});
-			}
+			})
+			.catch(function(error) {
+				displayError();
+			});
 		}
 	})
 	.catch(function(error) {

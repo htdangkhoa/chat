@@ -48,7 +48,7 @@ app
 
 })
 .factory("$socket", function($rootScope) {
-  var socket = io.connect(hostUrl);
+  var socket = io.connect(hostUrl + "/v1");
 
   return {
     on: function (eventName, callback) {

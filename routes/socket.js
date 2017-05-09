@@ -32,6 +32,17 @@ io.on("connection", function(socket) {
 	});
 
 	io.sockets.emit("chat", listMessage);
+
+	// Handle room.
+	socket.on("listen", function(room) {
+		socket.join(room);
+	})
+
+	socket.on("messages", function(message) {
+		socket.broadcast.to(message.room).emit("messages", {
+			content: message.email + ": " + message.text
+		})
+	})
 });
 
 // Export router.

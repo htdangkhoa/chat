@@ -2,6 +2,7 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
   	// $scope.listUser = [];
     // $scope.listMessage = [];
     // $scope.email = "";
+    var standing = null;
 
     angular.element(document).ready(function() {
       checkPassport();
@@ -54,9 +55,12 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
       })
     });
 
-    $socket.on("chat", function(data) {
+    // $socket.on("chat", function(data) {
+    //   console.log(data)
+    //   $scope.listMessage = data;
+    // })
+    $socket.on("messages", function(data) {
       console.log(data)
-      $scope.listMessage = data;
     })
 
   	// $socket.on("disconnect", function(data) {
@@ -67,12 +71,22 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
 		if (event.keyCode === 13 && !event.shiftKey && message !== "" && message !== undefined){
 			// console.log(id, message);
 
-			$socket.emit("chat", {
-				email: $scope.email,
-				message: message
-			});
+			// $socket.emit("chat", {
+			// 	email: $scope.email,
+			// 	message: message
+			// });
 
-			$timeout(function(){
+			// $timeout(function(){
+			// 	$("textarea").val("");
+			// }, 0);
+
+      console.log(standing)
+      $socket.emit("messages", {
+        room: standing,
+        email: $scope.email,
+        text: message
+      })
+      $timeout(function(){
 				$("textarea").val("");
 			}, 0);
 		}		
@@ -112,7 +126,8 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
     }, 3000)
   }
 
-  $scope.createDirectMessage = function(email, email) {
+  $scope.createDirectMessage = function(email) {
+    console.log(email)
     var requestToServer = function() {
       Restangular
       .all("/v1/direct/create")
@@ -126,7 +141,7 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
             $scope.directs = response.message[i].directs;
           }
         }
-        console.log(response)
+        // console.log(response.message)
       })
       .catch(function(error) {
         console.log(error);
@@ -171,17 +186,19 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
   }
 
   $scope.test = function(id, type) {
-    Restangular
-    .all("/test")
-    .post({
-      directID: id,
-      type: type
-    })
-    .then(function(response) {
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.log(error);
-    })
+    // Restangular
+    // .all("/test")
+    // .post({
+    //   directID: id,
+    //   type: type
+    // })
+    // .then(function(response) {
+    //   console.log(response);
+    // })
+    // .catch(function(error) {
+    //   console.log(error);
+    // })
+    $socket.emit("listen", id);
+    standing = id;
   }
 });
