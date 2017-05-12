@@ -174,9 +174,5 @@ router.post("/direct/remove", function(req, res) {
 	});
 });
 
-router.get("/test", function(req, res) {
-	res.status(500);
-})
-
 // Export router.
 module.exports = router;
