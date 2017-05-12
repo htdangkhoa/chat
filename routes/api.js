@@ -172,6 +172,10 @@ router.post("/direct/remove", function(req, res) {
 			message: "Something went wrong. Please try again later."
 		});
 	});
+});
+
+router.get("/test", function(req, res) {
+	res.status(500);
 })
 
 // Export router.

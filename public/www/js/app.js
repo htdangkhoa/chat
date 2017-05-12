@@ -31,7 +31,7 @@ app
     url: "/forgot_password",
     templateUrl: "../views/forgot_password.html"
   })
-  .state('/reset', {
+  .state('reset', {
     url: "/password/reset/:id",
     templateUrl: "../views/reset_password.html",
     controller: "ResetPasswordCtrl"
@@ -47,6 +47,26 @@ app
     "Access-Control-Allow-Credentials": "true"
   });
 
+})
+.factory("$isOnline", function($window, $rootScope) {
+  var statusConnection = {};
+
+  statusConnection.status = $window.navigator.onLine;
+
+  statusConnection.check = function() {
+    return statusConnection.status;
+  }
+
+  $window.addEventListener("offline", function() {
+    statusConnection.status = false;
+    $rootScope.$digest();
+  }, true);
+  $window.addEventListener("online", function() {
+    statusConnection.status = true;
+    $rootScope.$digest();
+  }, true);
+
+  return statusConnection;
 })
 .factory("$socket", function($rootScope) {
   var socket = io.connect(hostUrl);

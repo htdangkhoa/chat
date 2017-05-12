@@ -1,7 +1,16 @@
-app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeout, $stateParams, $filter, $q, $location, $notify) {
-  	// $scope.listUser = [];
-    // $scope.listMessage = [];
-    // $scope.email = "";
+app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeout, $stateParams, $filter, $q, $notify, $interval, $isOnline) {
+    $scope.c = $isOnline;
+    $scope.$watch("c.check()", function(stt) {
+      $scope.stt = stt;
+      if (!stt) {
+        $scope.startInterval = $interval(function() {
+          $(".lost-connection").attr("disabled", "disabled");
+        }, 500)
+      }else {
+        $interval.cancel($scope.startInterval);
+      }
+    });
+
     var standing = null;
 
     angular.element(document).ready(function() {
@@ -97,7 +106,23 @@ app.controller("HomeCtrl", function(Restangular, $scope, $state, $socket, $timeo
 				// $("textarea").val("");
         $scope.message = null;
 			}, 0);
-		}		
+
+      Restangular
+      .all("/v1/test")
+      .post({
+        data: {
+          room: standing,
+          email: $scope.email,
+          text: message
+        }
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+		}
 	}
 
   $scope.createRoom = function(type_room) {

@@ -2,6 +2,8 @@
 var modules = require("../modules/modules"),
     router = modules.router,
     io = modules.io,
+	workerFarm = require("worker-farm"),
+	worker = workerFarm(require.resolve("./worker")),
     listID = [],
     listEmail = [],
     listMessage = [];
@@ -47,6 +49,28 @@ io.on("connection", function(socket) {
 		})
 	})
 });
+
+
+// for (let i = 0; i < num; i++) {
+// 		worker(i, function (err, outp) {
+// 			setTimeout(function() {
+// 				console.log(outp);
+// 			}, 2000)
+// 			if (i == num - 1)
+// 				workerFarm.end(worker)
+// 		})
+// 	}
+router.post("/test", function(req, res) {
+	var data = req.body.data;
+
+	worker(data, function (err, outp) {
+		console.log(outp);
+		workerFarm.end(worker);
+		res.status(200).send(outp);
+	})
+
+	// res.status(200).send("OK");
+})
 
 // Export router.
 module.exports = router;

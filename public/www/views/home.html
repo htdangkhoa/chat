@@ -3,16 +3,17 @@
 <div class="chat-box">
 	<div class="left-content">
 		<div class="info">
-			<div data-toggle="dropdown">
+			<div>
 				<p>DevChat</p>
-				<i class="fa fa-angle-down" aria-hidden="true"></i>
+				<i class="fa fa-angle-down" aria-hidden="true" data-toggle="dropdown"></i>
+				<ul class="dropdown-menu dropdown-menu-right" style="top: 35px;">
+					<li><a ng-click="error()">Account</a></li>
+					<li><a href="#">Settings</a></li>
+					<li role="presentation" class="divider"></li>
+					<li><a href="/authentication/signout">Sign out</a></li>
+				</ul>
 			</div>
-			<ul class="dropdown-menu dropdown-menu-right" style="top: 35px;">
-				<li><a href="#">HTML</a></li>
-				<li><a href="#">CSS</a></li>
-				<li role="presentation" class="divider"></li>
-				<li><a href="/authentication/signout">Sign out</a></li>
-			</ul>
+			
 			<span>{{email}}</span>
 		</div>
 		<ul class="channel-and-rooms">
@@ -73,5 +74,12 @@
         </div>-->
       </div>
     </div>
-  </div>
+</div>
+
+<div class="lost-connection" ng-show="!stt" ng-disabled="!stt">
+	<div>
+		<center>
+			<h2>Reconnecting...</h2>
+		</center>
+	</div>
 </div>

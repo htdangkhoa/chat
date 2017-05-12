@@ -61,8 +61,13 @@ app.use(function(req, res, next) {
 
   next();
 });
+
 app.use("/", require("../routes/auth"));
-app.use("/", require("../routes/socket"));
+app.use("/v1", require("../routes/socket"));
 app.use("/v1", require("../routes/api"));
 app.use("/dev", require("../routes/dev"));
 app.use(express.static(path.join(__dirname, "../public/www")));
+
+app.use(function(req, res) {
+  res.status(404).render("404.html");
+});

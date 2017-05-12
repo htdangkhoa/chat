@@ -77,8 +77,8 @@
   .chat-box .info {
     height: auto;
     width: 100%;
-    padding: 10px 10px 0px 10px;
-    cursor: pointer;
+    padding: 0;
+    cursor: default;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap; }
@@ -87,9 +87,15 @@
       display: flex; }
       .chat-box .info div p {
         font-size: 20px;
-        width: 100%; }
+        padding: 10px 10px 0;
+        margin: 0;
+        width: 100%;
+        cursor: default; }
       .chat-box .info div i {
-        padding-top: 8px; }
+        padding: 16px 8px 0;
+        cursor: pointer; }
+    .chat-box .info span {
+      padding: 0 10px; }
     .chat-box .info .dropdown-menu {
       top: 35px;
       margin: 0px;
@@ -211,5 +217,17 @@
       padding: 0px; }
       .modal-lg .modal-content .modal-body ul div {
         padding: 0px 0px 15px; }
+
+.lost-connection {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  opacity: 0.8; }
+  .lost-connection div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
 
 /*# sourceMappingURL=style.css.map */
