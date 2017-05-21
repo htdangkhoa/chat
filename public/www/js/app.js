@@ -2,13 +2,24 @@ var host = "127.0.0.1:8080";
 var hostUrl = "http://" + host;
 var audio = new Audio("../res/sound.mp3");
 
-var app = angular.module("starter", ["restangular", "ui.router", "ismobile"]);
+var app = angular.module("starter", ["restangular", "ui.router", "pascalprecht.translate", "ismobile", "ngLetterAvatar"]);
 app
-.config(function(RestangularProvider, $stateProvider, $urlRouterProvider, isMobileProvider) {
+.config(function(RestangularProvider, $stateProvider, $urlRouterProvider, $translateProvider, isMobileProvider) {
 
   // Resize logo on mobile.
   if (isMobileProvider.phone) {
     $(".logo").css("font-size", "7px");
+  }
+
+  $translateProvider.useStaticFilesLoader({
+      prefix: '../locales/locale-',
+      suffix: '.json'
+  });
+  if (window.localStorage.getItem("locale") === "vi") {
+    $translateProvider.preferredLanguage("vi");
+  }else {
+    $translateProvider.preferredLanguage("en");
+    window.localStorage.setItem("locale", "en");
   }
 
   $stateProvider

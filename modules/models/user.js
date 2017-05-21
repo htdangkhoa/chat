@@ -1,17 +1,28 @@
 var bcrypt = require("bcryptjs"),
     mongoose = require("mongoose"),
     uuid = require("uuid"),
+    uniqid = require("uniqid"),
     Schema = mongoose.Schema,
     salt_rounds = 10;
 
 var User = new Schema({
     _id: {
     	type: Schema.Types.ObjectId,
-    	default: function () { return mongoose.Types.ObjectId() }
+    	default: function () {
+            return mongoose.Types.ObjectId()
+        }
     },
     session: {
         type: String,
-        default: function() { return uuid.v4() }
+        default: function() {
+            return uuid.v4()
+        }
+    },
+    username: {
+        type: String,
+        default: function() {
+            return uniqid("User-");
+        }
     },
     email: {
     	type: String,

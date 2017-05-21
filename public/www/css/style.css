@@ -16,11 +16,13 @@
 
 *:focus, *:active {
   box-shadow: none !important;
-  -webkit-appearance: none !important;
   outline: none !important; }
 
 *[disabled] {
   cursor: not-allowed !important; }
+
+input[type=checkbox]:focus, input[type=checkbox]:active {
+  -webkit-appearance: checkbox !important; }
 
 .container {
   padding: 0px;
@@ -192,6 +194,9 @@
         border-top: 0.2px solid #CCCCCC;
         padding: 5px 8px; }
 
+#settingsModal .modal-content {
+  height: 245px; }
+
 .modal-lg {
   margin: 0px; }
   .modal-lg .modal-content {
@@ -201,22 +206,52 @@
       border: 0px; }
       .modal-lg .modal-content .modal-header button {
         border: 0px !important; }
-    .modal-lg .modal-content .modal-body div {
-      display: flex; }
-      .modal-lg .modal-content .modal-body div input {
-        width: 100%;
-        font-size: 20px;
-        padding: 0px 10px;
-        height: 50px; }
-      .modal-lg .modal-content .modal-body div button {
-        width: 50px; }
-    .modal-lg .modal-content .modal-body ul {
-      height: calc(100vh - 170px);
-      overflow-y: auto;
-      margin-top: 20px;
-      padding: 0px; }
-      .modal-lg .modal-content .modal-body ul div {
-        padding: 0px 0px 15px; }
+    .modal-lg .modal-content .modal-body {
+      padding: 0px 15px; }
+      .modal-lg .modal-content .modal-body div {
+        display: flex; }
+        .modal-lg .modal-content .modal-body div input {
+          width: 100%;
+          font-size: 20px;
+          padding: 0px 10px;
+          height: 50px; }
+        .modal-lg .modal-content .modal-body div button {
+          width: 50px; }
+      .modal-lg .modal-content .modal-body ul {
+        height: calc(100vh - 170px);
+        overflow-y: auto;
+        margin-top: 20px;
+        padding: 0px; }
+        .modal-lg .modal-content .modal-body ul div {
+          margin: 0px 0px 15px;
+          cursor: pointer; }
+      .modal-lg .modal-content .modal-body .settings {
+        display: block; }
+        .modal-lg .modal-content .modal-body .settings * {
+          display: block; }
+        .modal-lg .modal-content .modal-body .settings .settings-header .avatar > img {
+          border-radius: 50% !important;
+          height: 60px;
+          width: 60px;
+          margin-bottom: 15px; }
+        .modal-lg .modal-content .modal-body .settings .settings-body {
+          width: 100%; }
+          .modal-lg .modal-content .modal-body .settings .settings-body hr {
+            margin: 0px; }
+          .modal-lg .modal-content .modal-body .settings .settings-body .settings-row {
+            display: flex;
+            margin: 20px 0;
+            font-size: 16px; }
+            .modal-lg .modal-content .modal-body .settings .settings-body .settings-row .settings-col {
+              width: 100%; }
+            .modal-lg .modal-content .modal-body .settings .settings-body .settings-row .key {
+              font-weight: bold; }
+            .modal-lg .modal-content .modal-body .settings .settings-body .settings-row .key, .modal-lg .modal-content .modal-body .settings .settings-body .settings-row .val {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap; }
+        .modal-lg .modal-content .modal-body .settings .settings-footer button {
+          width: 100%; }
 
 .lost-connection {
   height: 100%;
@@ -229,5 +264,30 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); }
+
+.checkbox {
+  margin: 0px; }
+  .checkbox input[type=checkbox] {
+    height: 15px !important;
+    width: auto !important;
+    margin: 5px 0px; }
+  .checkbox label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+
+.notification-label {
+  width: 17px !important;
+  height: 17px;
+  border: 1px solid;
+  position: absolute;
+  right: 25px;
+  top: 8px;
+  border-radius: 50% !important;
+  justify-content: center;
+  font-size: 10px;
+  background-color: #00FE00 !important;
+  color: black !important;
+  font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */

@@ -15,7 +15,7 @@ router.get("/info", function(req, res) {
 
 	User.findOne({
 		_id: id
-	}, ["_id", "email", "directs", "channels"])
+	}, ["email", "username", "directs", "channels"])
 	.then(function(user) {
 		return res.status(200).send({
 			message: user
@@ -34,7 +34,7 @@ router.get("/info", function(req, res) {
  * Params:	NONE
  */
 router.get("/get_user", function(req, res) {
-	User.find({}, ["_id", "email"])
+	User.find({}, ["email", "username"])
 	.then(function(user) {
 		res.status(200).send({
 			message: user
@@ -58,14 +58,14 @@ router.post("/direct/create", function(req, res) {
 	 // Display error function.                       //
 	///////////////////////////////////////////////////
 	function displayError() {
-		return res.status(404).send("Cannot create direct messages.");
+		return res.status(400).send("Cannot create direct messages.");
 	}
 
 	User.find({
 		email: {
 			$in: [myEmail, otherEmail]
 		}
-	}, ["email", "directs"])
+	}, ["email", "username", "directs"])
 	.then(function(users) {
 		(users.length > 1) ? createRoom() : displayError();
 		// (users.length > 1) ? addRoomToDirectArray() : displayError();
@@ -146,7 +146,7 @@ router.post("/direct/remove", function(req, res) {
 
 	User.findOne({
 		email: myEmail
-	}, ["email", "directs"])
+	}, ["email", "username", "directs"])
 	.then(function(user) {
 		if (user === null) return res.status(404).send({
 			message: "Email not found."

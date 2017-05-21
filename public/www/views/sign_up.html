@@ -1,16 +1,17 @@
-<title>Sign up</title>
+<title>{{'SIGN UP' | translate}}</title>
 
 <center>
   <div class="sign_form">
-    <h2>Sign up</h2>
+    <h2>{{'SIGN UP' | translate}}</h2>
     <form action="/authentication/register" method="post">
-    	<input class="form-control" required type="email" ng-model="email" name="email" placeholder="Email">
-	    <input class="form-control" required type="password" ng-model="password" name="password" placeholder="Password">
-	    <input class="form-control" required type="password" ng-model="confirm" placeholder="Confirm password">
-	    <button type="submit" ng-disabled="email === undefined || password !== confirm || password === undefined || confirm === undefined">Sign up</button>
+    	<input class="form-control" required type="email" ng-model="email" name="email" placeholder="{{'EMAIL' | translate}} (*)">
+      <input class="form-control" type="text" name="username" placeholder="{{'NAME' | translate}}">
+	    <input class="form-control" required type="password" ng-model="password" name="password" placeholder="{{'PASSWORD' | translate}} (*)">
+	    <input class="form-control" required type="password" ng-model="confirm" placeholder="{{'CONFIRM PASSWORD' | translate}} (*)">
+	    <button type="submit" ng-disabled="email === undefined || password !== confirm || password === undefined || confirm === undefined">{{'SIGN UP' | translate}}</button>
     </form>
     
     
-    <p>Already have an account? <a ui-sref="sign_in">Sign in</a></p>
+    <p>{{'ALREADY HAVE AN ACCOUNT' | translate}}? <a ui-sref="sign_in">{{'SIGN IN' | translate}}</a></p>
   </div>
 </center>

@@ -35,5 +35,14 @@ router.get("/session/reset", function(req, res) {
 	res.send(req.session)
 });
 
+router.post("/test/mocha", function(req, res) {
+	var test = req.body.test;
+	if (test) {
+		return res.status(200).send(test);
+	}
+
+	return res.status(400).send(test);
+})
+
 // Export router.
 module.exports = router;

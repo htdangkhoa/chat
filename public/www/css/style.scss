@@ -28,12 +28,16 @@ $gray: #CCCCCC;
 
 *:focus, *:active {
 	box-shadow: none !important;
-	-webkit-appearance: none !important;
+	// -webkit-appearance: none !important;
 	outline: none !important;
 }
 
 *[disabled] {
 	cursor: not-allowed !important;
+}
+
+input[type=checkbox]:focus, input[type=checkbox]:active {
+	-webkit-appearance: checkbox !important;
 }
 
 .container {
@@ -153,9 +157,9 @@ $gray: #CCCCCC;
 			background-color: #333 !important;
 			padding: 0px;
 
-			li { 
+			li {
 				text-align: right;
-				
+
 				a {
 					background-color: #333 !important;
 				}
@@ -299,6 +303,9 @@ $gray: #CCCCCC;
 	}
 }
 
+#settingsModal .modal-content {
+	height: 245px;
+}
 .modal-lg {
 	margin: 0px;
 
@@ -315,6 +322,8 @@ $gray: #CCCCCC;
 		}
 
 		.modal-body {
+			padding: 0px 15px;
+
 			div {
 				display: flex;
 
@@ -337,7 +346,53 @@ $gray: #CCCCCC;
 				padding: 0px;
 
 				div {
-					padding: 0px 0px 15px;
+					margin: 0px 0px 15px;
+					cursor: pointer;
+				}
+			}
+
+			.settings {
+				* {
+					display: block;
+				}
+				display: block;
+
+				.settings-header .avatar > img {
+					border-radius: 50% !important;
+					height: 60px;
+					width: 60px;
+					margin-bottom: 15px;
+				}
+				.settings-body {
+					width: 100%;
+
+					hr {
+						margin: 0px;;
+					}
+
+					.settings-row {
+						display: flex;
+						margin: 20px 0;
+						font-size: 16px;
+
+						.settings-col {
+							width: 100%;
+						}
+
+						.key {
+							font-weight: bold;
+						}
+
+						.key, .val {
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+						}
+					}
+				}
+
+				.settings-footer button {
+					width: 100%;
 				}
 			}
 		}
@@ -357,4 +412,35 @@ $gray: #CCCCCC;
 		left: 50%;
 		transform: translate(-50%, -50%);
 	}
+}
+
+.checkbox {
+	margin: 0px;
+
+	input[type=checkbox] {
+		height: 15px !important;
+		width: auto !important;
+		margin: 5px 0px;
+	}
+
+	label {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+
+.notification-label {
+		width: 17px !important;
+		height: 17px;
+		border: 1px solid;
+		position: absolute;
+		right: 25px;
+		top: 8px;
+		border-radius: 50% !important;
+		justify-content: center;
+		font-size: 10px;
+		background-color: #00FE00 !important;
+		color: black !important;
+		font-weight: bold;
 }

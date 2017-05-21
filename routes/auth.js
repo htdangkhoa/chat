@@ -35,10 +35,12 @@ router.get("/", function(req, res) {
  * Name:    REGISTER
  * Method:  POST
  * Params:  email, password
+ * Options: username
  */
 router.post("/authentication/register", function(req, res){
 	var user = new User({
 		email: req.body.email,
+    username: req.body.username,
 		password: req.body.password
 	});
 
