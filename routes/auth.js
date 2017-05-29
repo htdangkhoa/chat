@@ -27,7 +27,7 @@ router.get("/", function(req, res) {
   res.render("index.html", {
     "signed_in": signed_in,
     "id": id,
-    "key": "Dangkhoa*7896#"
+    // "key": "Dangkhoa*7896#"
   });
 });
 
@@ -151,7 +151,7 @@ router.post("/password/reset", function(req, res) {
  * Method:  GET
  * Params:  None
  */
-router.get("/authentication/signout", function(req, res) {
+router.all("/authentication/signout", function(req, res) {
   console.log(req.session)
   req.logout();
   req.session.destroy();

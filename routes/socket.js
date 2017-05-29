@@ -36,13 +36,22 @@ io.on("connection", function(socket) {
 	io.sockets.emit("chat", listMessage);
 
 	// Handle room.
+	var arrChat = [];
 	socket.on("listen", function(room) {
-		console.log(room)
-		socket.join(room);
+		console.log(room);
+
+		if (room.oldRoom) {
+			socket.leave(room.oldRoom);
+		}
+
+		socket.join(room.newRoom);
+		arrChat = [];
 	})
 
 	socket.on("messages", function(message) {
 		console.log(message);
+		arrChat.push(message);
+		
 		socket.broadcast.to(message.room).emit("messages", {
 			email: message.email.substring(0, message.email.indexOf("@")),
 			content: message.text

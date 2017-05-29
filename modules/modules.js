@@ -13,27 +13,45 @@ var config = require("../config"),
     bodyParser = require("body-parser"),
     cors = require("cors"),
     view = require("consolidate"),
+    subdomain = require("express-subdomain"),
     socket = require("socket.io"),
     app = express(),
+    expressMonitor = require("express-status-monitor"),
     server = require("http").Server(app),
     io = socket(server);
-
 
 mongoose.connect(config.url);
 
 // Export modules.
 module.exports.express = express;
+module.exports.expressMonitor = expressMonitor;
 module.exports.router = express.Router();
 module.exports.io = io;
 module.exports.PORT = process.env.PORT || 8080;
 module.exports.server = server;
 
 // Use middleware.
+var auth = require('http-auth');
+var basic = auth.basic({
+		realm: "Monitor Area",
+    skipUser: true
+	}, (username, password, callback) => { 
+	    // Custom authentication
+	    // Use callback(error) if you want to throw async error.
+		callback(username === "root" && password === "1");
+	}
+);
 app.use(morgan("dev"));
-app.use(helmet({
-  frameguard: false
-}));
+app.use(helmet());
 app.use(compression());
+// app.use("/admin/status", auth.connect(basic))
+app.use(expressMonitor({
+  title: "Admin",
+  path: "/admin/status",
+  websocket: io,
+  socketIoPort: 8080,
+  iFrame: true
+}));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -66,6 +84,7 @@ app.use("/", require("../routes/auth"));
 app.use("/v1", require("../routes/socket"));
 app.use("/v1", require("../routes/api"));
 app.use("/dev", require("../routes/dev"));
+app.use(subdomain("test", require("../routes/sub")))
 app.use(express.static(path.join(__dirname, "../public/www")));
 
 app.use(function(req, res) {

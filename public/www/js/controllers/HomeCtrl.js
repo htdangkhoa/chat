@@ -11,7 +11,8 @@
         }
       });
 
-      var standing = null,
+      var standing,
+          oldRoom,
           typingTimeOut;
 
       function getListUser() {
@@ -236,7 +237,12 @@
       // .catch(function(error) {
       //   console.log(error);
       // })
-      $socket.emit("listen", id);
+      
+      oldRoom = standing;
       standing = id;
+      $socket.emit("listen", {
+        newRoom: standing,
+        oldRoom: oldRoom
+      });
     }
   });
