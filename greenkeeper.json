@@ -1,0 +1,16 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "public/www/libs/angular-ismobile/package.json",
+        "public/www/libs/angular-ui-router/package.json",
+        "public/www/libs/angular/package.json",
+        "public/www/libs/bootstrap/package.json",
+        "public/www/libs/jquery/package.json",
+        "public/www/libs/lodash/package.json",
+        "public/www/libs/restangular/package.json"
+      ]
+    }
+  }
+}
